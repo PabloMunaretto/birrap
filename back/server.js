@@ -55,7 +55,7 @@ app.post("/send-email", (req, res) => {
   });
 });
 
-sequelize.sync({ force: false}).then(() => {
+sequelize.sync({ force: false }).then(() => {
   app.listen(config.port, () => {
     console.log(`Server listening at port ${config.port}`);
   });
