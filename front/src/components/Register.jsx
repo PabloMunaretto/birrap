@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { registerUser } from "../store/user";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import registerStyles from "../Styles/register"
 import Avatar from '@material-ui/core/Avatar';
@@ -35,7 +35,6 @@ const Register = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const [newUser, setNewUser] = useState({});
-  const user = useSelector((state) => state.user);
   const classes = registerStyles();
   
   const handleChange = (e) => {

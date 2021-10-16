@@ -1,9 +1,10 @@
 import { createReducer, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { API } from './store'
 
 
 export const getCategory = createAsyncThunk("SEARCH_CATEGORY", (id) => {
-  return axios.get(`http://localhost:8000/api/category/${id}`).then((res) => res.data);
+  return axios.get(`${API}/api/category/${id}`).then((res) => res.data);
 });
 
 const categoryReducer = createReducer({}, {

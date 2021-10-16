@@ -11,12 +11,7 @@ import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import { TableCell, Button } from '@material-ui/core';
 import { addItemToCarrito } from "../store/items"
 
-
-
 // - visual de cada item: (imagen del producto, descripcion del producto, precio, reviews, y valoracion)
-
-
-
 
 const SingleProduct = ({ productId }) => {
   const classes = productStyles();
@@ -25,11 +20,9 @@ const SingleProduct = ({ productId }) => {
   const carrito = useSelector((state) => state.carrito);
   const reviews = product.reviews
 
-
   useEffect(() => {
     dispatch(getProduct(productId))
-  }, [])
-
+  }, [dispatch, productId])
 
   const addToCart = (productId) => {
     const itemData = {
@@ -69,7 +62,9 @@ const SingleProduct = ({ productId }) => {
         <Grid container spacing={2}>
           <Grid item>
             <ButtonBase className={classes.image}>
-              <img src={product.url}
+              <img 
+                alt=""
+                src={product.url}
                 width="128"
                 height="128"
                 margin='auto'

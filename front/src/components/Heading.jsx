@@ -49,7 +49,7 @@ export default function PrimarySearchAppBar() {
 
   useEffect(() => {
     if (user) dispatch(getCarrito(user.id));
-  }, [items]);
+  }, [items, user, dispatch]);
 
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);

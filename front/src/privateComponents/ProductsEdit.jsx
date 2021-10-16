@@ -3,7 +3,6 @@ import {
   TableBody,
   TableCell,
   TableContainer,
-  Box,
   TableRow,
   Button,
   Typography,
@@ -13,22 +12,22 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getProducts } from "../store/products";
-import { addItemToCarrito } from "../store/items";
+// import { addItemToCarrito } from "../store/items";
 import productStyles from "../Styles/products";
-import { getCarrito } from "../store/carrito";
-import InputBase from "@material-ui/core/InputBase";
-import SearchIcon from "@material-ui/icons/Search";
-import productSearchStyles from "../Styles/productSearchBar";
-import Toolbar from "@material-ui/core/Toolbar";
+// import { getCarrito } from "../store/carrito";
+// import InputBase from "@material-ui/core/InputBase";
+// import SearchIcon from "@material-ui/icons/Search";
+// import productSearchStyles from "../Styles/productSearchBar";
+// import Toolbar from "@material-ui/core/Toolbar";
 import axios from "axios";
 
 const TableMaterial = () => {
   const classes = productStyles();
-  const classes2 = productSearchStyles();
+  // const classes2 = productSearchStyles();
   const dispatch = useDispatch();
   const products = useSelector((state) => state.products);
-  const carrito = useSelector((state) => state.carrito);
-  const user = useSelector((state) => state.user);
+  // const carrito = useSelector((state) => state.carrito);
+  // const user = useSelector((state) => state.user);
 
   const deleteProduct = (id) => {
     console.log(`el Id es :`, id);
@@ -37,18 +36,10 @@ const TableMaterial = () => {
       url: `http://localhost:8000/api/product/${id}`,
     }).then(() => dispatch(getProducts()));
   };
-  // const handleItem = (item, operation) => {
-  //     const itemData = {
-  //       cartId: carrito.id,
-  //       productId: item.id,
-  //       operation
-  //     }
-  //     return dispatch(modifyItem(itemData));
-  //   };
 
   useEffect(() => {
     dispatch(getProducts());
-  }, []);
+  }, [dispatch]);
 
   return (
     <TableContainer>
@@ -73,6 +64,7 @@ const TableMaterial = () => {
                   style={{ textDecoration: "none", color: "inherit" }}
                 >
                   <img
+                    alt=""
                     src={product.url}
                     width="128"
                     height="128"

@@ -5,7 +5,6 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import FastfoodIcon from "@material-ui/icons/Fastfood";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -14,7 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import productCreateStyles from "../Styles/productCreate";
-
+import { API } from '../store/store'
 
 export default function SignUp() {
   const classes = productCreateStyles();
@@ -25,14 +24,14 @@ export default function SignUp() {
 
   useEffect(() => {
     dispatch(getCategories());
-  }, []);
+  }, [dispatch]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log("enviando producto");
     axios({
       method: `post`,
-      url: `http://localhost:8000/api/product`,
+      url: `${API}/api/product`,
       data: newProduct,
     }).then((product) => {
       console.log(product);

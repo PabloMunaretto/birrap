@@ -15,10 +15,8 @@ const Profile = () => {
   const carritos = useSelector((state) => state.carritosProfile);
   useEffect(() => {
     dispatch(getCarritosProfile(user.id));
-  }, []);
+  }, [dispatch, user]);
 
-  console.log("carritossss", carritos[0])
-  let status;
   return (
     <div>
       <div >

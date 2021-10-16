@@ -7,7 +7,7 @@ import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import FastfoodIcon from "@material-ui/icons/Fastfood";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import { getCategory } from "../store/category";
@@ -24,7 +24,7 @@ export default function FormEditCategory({ categoryId }) {
     dispatch(getCategory(categoryId)).then((res) =>
       setEditCategory(res.payload)
     );
-  }, []);
+  }, [dispatch, categoryId]);
 
   const handleSubmit = (e) => {
     e.preventDefault();

@@ -1,25 +1,26 @@
 import { createReducer, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { API } from './store'
 
 export const getProducts = createAsyncThunk("SEARCH_PRODUCT", () => {
-  return axios.get(`http://localhost:8000/api/product`).then((res) => res.data);
+  return axios.get(`${API}/api/product`).then((res) => res.data);
 });
 
 export const postProduct = createAsyncThunk("CREATE_PRODUCT", () => {
   return axios
-    .post(`http://localhost:8000/api/product`)
+    .post(`${API}/api/product`)
     .then((res) => res.data);
 });
 
 export const putProduct = createAsyncThunk("EDIT_PRODUCT", () => {
   return axios
-    .put(`http://localhost:8000/api/product/:id`)
+    .put(`${API}/api/product/:id`)
     .then((res) => res.data);
 });
 
 export const deleteProduct = createAsyncThunk("DELETE_PRODUCT", () => {
   return axios
-    .delete(`http://localhost:8000/api/product/:id`)
+    .delete(`${API}/api/product/:id`)
     .then((res) => res.data);
 });
 
@@ -42,7 +43,7 @@ export const getProductName = createAsyncThunk(
   "SEARCH_PRODUCT_NAME",
   (name) => {
     return axios
-      .get(`http://localhost:8000/api/product/name/${name}`)
+      .get(`${API}/api/product/name/${name}`)
       .then((res) => res.data)
       .catch(console.log("error"));
   }
@@ -51,7 +52,7 @@ export const getProductByCategorie = createAsyncThunk(
   "SEARCH_PRODUCT_CATEGORIE",
   (id) => {
     return axios
-      .get(`http://localhost:8000/api/product/category/${id}`)
+      .get(`${API}/api/product/category/${id}`)
       .then((res) => res.data);
   }
 );

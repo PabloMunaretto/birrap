@@ -1,7 +1,6 @@
 import React from "react";
 import {
   Table,
-  Box,
   TableBody,
   TableCell,
   TableContainer,
@@ -15,9 +14,7 @@ import { getUsers } from "../store/users";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
-import usersStyles from "../Styles/users";
-
-
+import { API } from '../store/store'
 
 const StyledTableCell = withStyles(() => ({
   head: {
@@ -41,19 +38,18 @@ const StyledTableCell = withStyles(() => ({
 }))(TableCell);
 
 export default function SignUp() {
-  const classes = usersStyles();
   const dispatch = useDispatch();
   const users = useSelector((state) => state.users);
   const admin = useSelector((state) => state.user);
 
   useEffect(() => {
     dispatch(getUsers());
-  }, []);
+  }, [dispatch]);
 
   const changeUserRole = (id) => {
     axios({
       method: `put`,
-      url: `http://localhost:8000/api/users/promote`,
+      url: `${API}/api/users/promote`,
       data: {
         id,
       },
@@ -62,7 +58,7 @@ export default function SignUp() {
   const deleteUser = (id) => {
     axios({
       method: `delete`,
-      url: `http://localhost:8000/api/users/${id}`,
+      url: `${API}/api/users/${id}`,
     }).then(() => dispatch(getUsers()));
   };
 
@@ -113,6 +109,7 @@ export default function SignUp() {
                 </TableRow>
               );
             }
+            return <TableRow></TableRow>
           })}
         </TableBody>
       </Table>

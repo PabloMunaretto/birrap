@@ -38,7 +38,6 @@ const useStyles = makeStyles(theme => ({
     text: {
       display: "flex",
       flexDirection: "column",
-      alignItems: "center",
       justifyContent: "center",
       alignItems: "center",
       fontSize: "150%"

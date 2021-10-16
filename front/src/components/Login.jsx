@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { loginUser, logFbUser, getFbUser } from "../store/user";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { getUser } from "../store/user";
 import { getCarrito } from "../store/carrito";
 import FacebookLogin from "react-facebook-login";
 import {
-  makeStyles,
   Container,
   CssBaseline,
   Avatar,
@@ -15,10 +14,7 @@ import {
   FormControlLabel,
   Checkbox,
   Button,
-  Grid,
-  Link,
 } from "@material-ui/core";
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import FastfoodIcon from "@material-ui/icons/Fastfood";
 import loginStyles from "../Styles/login";
 
@@ -26,7 +22,6 @@ const Login = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const [newUser, setNewUser] = useState({});
-  const user = useSelector((state) => state.user);
   const classes = loginStyles();
 
   const responseFacebook = (response) => {

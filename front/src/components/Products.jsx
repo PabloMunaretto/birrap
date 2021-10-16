@@ -1,4 +1,4 @@
-import { Table, TableBody, TableCell, TableContainer, TableHead, Box, TableRow, Button, Typography, AppBar, Tab } from '@material-ui/core';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Button, Typography } from '@material-ui/core';
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom"
@@ -54,7 +54,7 @@ const TableMaterial = () => {
   useEffect(() => {
     dispatch(getProducts())
       .then(dispatch(getCategories()));
-  }, []);
+  }, [dispatch]);
 
   return (
     <TableContainer>
@@ -86,6 +86,7 @@ const TableMaterial = () => {
               <TableCell>
                 <Link to={`/product/${product.id}`}>
                   <img
+                    alt=""
                     src={product.url}
                     width="128"
                     height="128"

@@ -21,7 +21,6 @@ const useStyles = makeStyles((theme) => ({
     },
     fbButton:{
       width: "100%",
-      display: "flex",
       flexDirection: "column",
       alignItems: "center",
       fontFamily: 'Lucida Grande, Helvetica Neue, Helvetica, Arial, sans-serif',

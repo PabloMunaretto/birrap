@@ -14,6 +14,8 @@ import emailReducer from "./emails"
 import categoryReducer from "./category"
 import ordersReducer from "./orders"
 
+export const API = `http://localhost:8000`
+
 const store = configureStore({
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
   reducer: {

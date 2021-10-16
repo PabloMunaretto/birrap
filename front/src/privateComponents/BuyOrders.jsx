@@ -11,20 +11,16 @@ const BuyOrders = () => {
   const classes = buyOrdersStyles();
   const dispatch = useDispatch();
   const carritos = useSelector(state => state.orders);
-  const user = useSelector(state => state.user);
   const [effect, setEffect] = useState({})
   useEffect(() => {
     dispatch(getOrders());
-  }, [effect]);
+  }, [effect, dispatch]);
   
-  let status;
-
   const handlePayCarrito = (state, carrito) => {
     let cart = {
       state,
       id: carrito.id,
     }
-    
     dispatch(updateCarrito(cart))
       .then(() => {
         setEffect([])

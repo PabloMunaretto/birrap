@@ -1,12 +1,13 @@
 import { createReducer, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { API } from './store'
 
 export const sendEmailToUser = createAsyncThunk("SEND_EMAIL_TO_USER", (emailData) => {
     const { email, subject, text } = emailData
     
     return axios({
         method: "post",
-        url: "http://localhost:8000/send-email",
+        url: `${API}/send-email`,
         data: { email, subject, text },
     }).then(email => email);
 }
@@ -15,7 +16,7 @@ export const sendEmailToAdmin = createAsyncThunk("SEND_EMAIL_TO_ADMIN", (emailDa
   const { email } = emailData
   return axios({
       method: "post",
-      url: "http://localhost:8000/send-email",
+      url: `${API}/send-email`,
       data: { email },
   }).then(email => email);
 }

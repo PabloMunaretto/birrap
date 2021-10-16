@@ -11,7 +11,6 @@ import { getCarrito } from "../store/carrito";
 
 const Index = () => {
   const dispatch = useDispatch()
-  const user = useSelector((state) => state.user)
   const carrito = useSelector(state => state.carrito)
   
   useEffect(() => {
@@ -32,7 +31,7 @@ const Index = () => {
           }
         })
     }
-  }, [])
+  }, [dispatch, carrito])
 
   return (
     <div>

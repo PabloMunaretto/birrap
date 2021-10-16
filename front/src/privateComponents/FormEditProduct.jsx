@@ -5,7 +5,6 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import FastfoodIcon from "@material-ui/icons/Fastfood";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -25,7 +24,7 @@ export default function FormEditProduct({ productId }) {
 
   useEffect(() => {
     dispatch(getProduct(productId)).then((res) => setEditProduct(res.payload));
-  }, []);
+  }, [dispatch, productId]);
 
   const handleSubmit = (e, id) => {
     e.preventDefault();

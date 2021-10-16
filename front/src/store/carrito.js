@@ -1,8 +1,10 @@
 import { createReducer, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
+import { API } from './store'
+
 export const getCarrito = createAsyncThunk("GET_CARRITO", (id) => {
-  return axios.get(`http://localhost:8000/api/cart/${id}`).then((res) => {
+  return axios.get(`${API}/api/cart/${id}`).then((res) => {
     return res.data;
   });
 });
@@ -14,7 +16,7 @@ export const postCarrito = createAsyncThunk("POST_CARRITO", (carrito) => {
   const state = carrito.state;
   return axios({
     method: "post",
-    url: `http://localhost:8000/api/cart/${carrito.id}`,
+    url: `${API}/api/cart/${carrito.id}`,
     data: { paymentMethod, table, state },
   }).then((product) => product.data);
 });
@@ -30,7 +32,7 @@ export const updateCarrito = createAsyncThunk("UPDATE_CARRITO", (cart) => {
   const { state, total, paymentMethod, table } = cart;
   return axios({
     method: "put",
-    url: `http://localhost:8000/api/cart/${cart.id}`,
+    url: `${API}/api/cart/${cart.id}`,
     data: { state, total, paymentMethod, table },
   }).then(() => ({}));
   // El update no devuelve nada para setear el estado. Asi que lo seteamos vacio cuando compra.

@@ -53,7 +53,7 @@ const Cart = () => {
 
   useEffect(() => {
     if (user) dispatch(getCarrito(user.id));
-  }, [items]);
+  }, [items, user, dispatch]);
 
   // HANDLERS -----------------
   const handleDelete = (item) => {
@@ -79,6 +79,7 @@ const Cart = () => {
     carrito.items.map((item) => {
       precio.push(item.item.qty >= 1 ? item.price * item.item.qty : 0);
       comida.push(item.name);
+      return item
     });
     total = precio.reduce((a, b) => a + b, 0);
   }
@@ -94,6 +95,7 @@ const Cart = () => {
                   <TableRow key={item.id}>
                     <TableCell>
                       <img
+                        alt=''
                         src={item.url}
                         width="128"
                         height="128"
@@ -136,7 +138,7 @@ const Cart = () => {
                         </Button>
                       </Typography>{" "}
                       <br />
-                      {item.item.qty == 1 ? (
+                      {item.item.qty === 1 ? (
                         <Button
                           disabled={true}
                           variant="contained"

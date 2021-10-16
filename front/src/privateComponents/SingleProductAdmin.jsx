@@ -10,18 +10,14 @@ import productStyles from "../Styles/products"
 
 // - visual de cada item: (imagen del producto, descripcion del producto, precio, reviews, y valoracion)
 
-
 const SingleProduct = ({ productId }) => {
   const classes = productStyles();
   const dispatch = useDispatch()
   const product = useSelector(state => state.singleProduct)
-  const carrito = useSelector((state) => state.carrito);
-
 
   useEffect(() => {
     dispatch(getProduct(productId))
-      .then(producto => console.log(producto))
-  }, [])
+  }, [dispatch, productId])
 
 
   const printStar = (amount) => {
@@ -41,7 +37,9 @@ const SingleProduct = ({ productId }) => {
         <Grid container spacing={2}>
           <Grid item>
             <ButtonBase className={classes.image}>
-              <img src={product.url}
+              <img 
+                alt=""
+                src={product.url}
                 width="128"
                 height="128"
                 margin='auto'

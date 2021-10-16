@@ -5,7 +5,7 @@ import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import Typography from '@material-ui/core/Typography';
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getCarrito, updateCarrito } from "../store/carrito";
 import { sendEmailToUser, sendEmailToAdmin } from "../store/emails";
@@ -23,7 +23,7 @@ const GetStepContent = (step) => {
   const classes = compraStyles();
   const carrito = useSelector((state) => state.carrito);
   const user = useSelector((state) => state.user);
-  const items = useSelector((state) => state.items);
+  // const items = useSelector((state) => state.items);
   const [admin, setAdmin] = useState("");
 
   // Si no hay un user admin se rompe. Poner un admin cualquiera
@@ -35,11 +35,7 @@ const GetStepContent = (step) => {
       let adminUser = payload.filter(usuario => usuario.admin === true);
       setAdmin(adminUser[0]); //Para saber a que admin se le manda el mail. Es al primero siempre
     });
-  }, []);
-
-
-  const comida = [];
-
+  }, [dispatch]);
 
   let fullFilled = true;
 
@@ -57,6 +53,7 @@ const GetStepContent = (step) => {
   if (carrito.items) {
     carrito.items.map(item => {
       precio.push(item.item.qty >= 1 ? item.price * item.item.qty : 0);
+      return item
     });
     total = precio.reduce((a, b) => a + b, 0);
   }
@@ -77,7 +74,7 @@ const GetStepContent = (step) => {
     Se ha completado con exito tu compra.
     Descripccion del Pedido:
     ${carrito.items && carrito.items.map((item, index) =>
-      (index == 0 ? '\t -' : '\t -') + item.item.qty + ' ' + item.name + ' $' + item.price + '\n'
+      (index === 0 ? '\t -' : '\t -') + item.item.qty + ' ' + item.name + ' $' + item.price + '\n'
     ).join("") }
       Total: $${total}
 
@@ -100,7 +97,7 @@ const GetStepContent = (step) => {
 
   useEffect(() => {
     dispatch(getCarritosProfile(user.id));
-  }, []);
+  }, [dispatch, user]);
 
   switch (step) {
     case 0:

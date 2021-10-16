@@ -1,8 +1,9 @@
 import { createReducer, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { API } from './store'
 
 export const getProduct = createAsyncThunk("SEARCH_SINGLEPRODUCT", (productId) => {
-  return axios.get(`http://localhost:8000/api/product/${productId}`).then((res) => res.data);
+  return axios.get(`${API}/api/product/${productId}`).then((res) => res.data);
 });
 
 export const updateProduct = createAsyncThunk("PUT", (product) => {
